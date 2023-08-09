@@ -13,6 +13,18 @@ let val_vidas = new Texto()
 let texto_game_over = new Texto()
 let jogar = true
 
+
+// Som
+
+    const som1 = new Audio("assets/bee_sound.wav")
+    const som2 = new Audio("assets/flowers_sound.wav")
+    const som3 = new Audio("assets/spider_sound.mp3")
+    som1.volume = 0.8
+    som1.loop = true
+    som2.volume = 0.5
+    som3.volume = 0.6
+    
+
 // let spider2 = new Obj(0,0,100,100,'darkorchid')
 
 document.addEventListener('keydown', (event)=>{
@@ -27,6 +39,8 @@ document.addEventListener('keydown', (event)=>{
     }else if(event.key === 'w'){
         console.log('pressionado a tecla "w" ')
     }
+
+    som1.play()
 })
 document.addEventListener('keyup', (event)=>{
     if(event.key === 'a'){
@@ -52,10 +66,14 @@ function colisao(){
     if(bee.colid(spider)){
         spider.recomeca()
         bee.vidas -=1
+        som1.pause()
+        som3.play()
     }
     if(bee.colid(flor)){
         flor.recomeca()
         bee.pts +=1
+        som1.pause()
+        som2.play()
     }
 }
 
